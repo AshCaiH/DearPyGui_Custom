@@ -265,6 +265,7 @@ DearPyGui::fill_configuration_dict(const mvListboxConfig& inConfig, PyObject* ou
         return;
     PyDict_SetItemString(outDict, "items", mvPyObject(ToPyList(inConfig.names)));
     PyDict_SetItemString(outDict, "num_items", mvPyObject(ToPyInt(inConfig.itemsHeight)));
+    PyDict_SetItemString(outDict, "index", mvPyObject(ToPyInt(inConfig.index)));
 }
 
 void
@@ -827,6 +828,7 @@ DearPyGui::set_configuration(PyObject* inDict, mvListboxConfig& outConfig, mvApp
         return;
 
     if (PyObject* item = PyDict_GetItemString(inDict, "num_items")) outConfig.itemsHeight = ToInt(item);
+    if (PyObject* item = PyDict_GetItemString(inDict, "index")) outConfig.index = ToInt(item);
     if (PyObject* item = PyDict_GetItemString(inDict, "items"))
     {
         outConfig.names = ToStringVect(item);
