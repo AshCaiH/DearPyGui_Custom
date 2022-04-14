@@ -44,6 +44,8 @@ public:
     int             _fileCount = 0;
     bool            _modal = false;
     bool            _directory = false;
+    bool            _noMove = false;
+    bool            _noResize = false;
     mvVec2          _min_size = { 100.0f, 100.0f };
     mvVec2          _max_size = { 30000.0f, 30000.0f };
 	PyObject*	    _cancelCallback = nullptr;
