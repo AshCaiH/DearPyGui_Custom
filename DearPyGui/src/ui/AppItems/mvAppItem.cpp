@@ -2875,6 +2875,8 @@ DearPyGui::GetEntityParser(mvAppItemType type)
         args.push_back({ mvPyDataType::String, "default_filename", mvArgType::KEYWORD_ARG, "'.'", "Default name that will show in the file name input." });
         args.push_back({ mvPyDataType::Integer, "file_count", mvArgType::KEYWORD_ARG, "0", "Number of visible files in the dialog." });
         args.push_back({ mvPyDataType::Bool, "modal", mvArgType::KEYWORD_ARG, "False", "Forces user interaction with the file selector." });
+        args.push_back({ mvPyDataType::Bool, "no_move", mvArgType::KEYWORD_ARG, "False", "Allows users to move file dialog window." });
+        args.push_back({ mvPyDataType::Bool, "no_resize", mvArgType::KEYWORD_ARG, "False", "Allows user to resize file dialog window." });
         args.push_back({ mvPyDataType::Bool, "directory_selector", mvArgType::KEYWORD_ARG, "False", "Shows only directory/paths as options. Allows selection of directory/paths only." });
         args.push_back({ mvPyDataType::IntList, "min_size", mvArgType::KEYWORD_ARG, "[100, 100]", "Minimum window size." });
         args.push_back({ mvPyDataType::IntList, "max_size", mvArgType::KEYWORD_ARG, "[30000, 30000]", "Maximum window size." });

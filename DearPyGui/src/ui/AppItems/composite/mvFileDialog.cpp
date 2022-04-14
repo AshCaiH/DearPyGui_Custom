@@ -98,7 +98,12 @@ void mvFileDialog::draw(ImDrawList* drawlist, float x, float y)
 			state.rectSize = { _instance.windowSizeDPG.x, _instance.windowSizeDPG.y };
 		}
 
-		if (_instance.Display(info.internalLabel, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings, _min_size, _max_size))
+		ImGuiWindowFlags newFlags = ImGuiWindowFlags_None;
+
+		if (_noMove) newFlags	= newFlags | ImGuiWindowFlags_NoMove;
+		if (_noResize) newFlags	= newFlags | ImGuiWindowFlags_NoResize;
+
+		if (_instance.Display(info.internalLabel, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings | newFlags, _min_size, _max_size))
 		{
 
 			// action if OK
@@ -163,6 +168,8 @@ void mvFileDialog::handleSpecificKeywordArgs(PyObject* dict)
 	if (PyObject* item = PyDict_GetItemString(dict, "default_filename")) _defaultFilename = ToString(item);
 	if (PyObject* item = PyDict_GetItemString(dict, "default_path")) _defaultPath = ToString(item);
 	if (PyObject* item = PyDict_GetItemString(dict, "modal")) _modal = ToBool(item);
+	if (PyObject* item = PyDict_GetItemString(dict, "no_move")) _noMove = ToBool(item);
+	if (PyObject* item = PyDict_GetItemString(dict, "no_resize")) _noResize = ToBool(item);
 	if (PyObject* item = PyDict_GetItemString(dict, "directory_selector")) _directory = ToBool(item);
 
 	if (PyObject* item = PyDict_GetItemString(dict, "min_size"))
@@ -188,6 +195,8 @@ void mvFileDialog::getSpecificConfiguration(PyObject* dict)
 	PyDict_SetItemString(dict, "default_filename", mvPyObject(ToPyString(_defaultFilename)));
 	PyDict_SetItemString(dict, "default_path", mvPyObject(ToPyString(_defaultPath)));
 	PyDict_SetItemString(dict, "modal", mvPyObject(ToPyBool(_modal)));
+	PyDict_SetItemString(dict, "no_move", mvPyObject(ToPyBool(_noMove)));
+	PyDict_SetItemString(dict, "no_resize", mvPyObject(ToPyBool(_noResize)));
 	PyDict_SetItemString(dict, "directory_selector", mvPyObject(ToPyBool(_directory)));
 }
 
