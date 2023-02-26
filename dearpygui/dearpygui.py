@@ -1811,7 +1811,7 @@ def file_dialog(*, label: str =None, user_data: Any =None, use_internal_label: b
 		if 'id' in kwargs.keys():
 			warnings.warn('id keyword renamed to tag', DeprecationWarning, 2)
 			tag=kwargs['id']
-		widget = internal_dpg.add_file_dialog(label=label, user_data=user_data, use_internal_label=use_internal_label, tag=tag, width=width, height=height, callback=callback, show=show, default_path=default_path, default_filename=default_filename, file_count=file_count, modal=modal, directory_selector=directory_selector, min_size=min_size, max_size=max_size, no_move:bool=False, no_resize:bool=False, cancel_callback: Callable = None, **kwargs)
+		widget = internal_dpg.add_file_dialog(label=label, user_data=user_data, use_internal_label=use_internal_label, tag=tag, width=width, height=height, callback=callback, show=show, default_path=default_path, default_filename=default_filename, file_count=file_count, modal=modal, directory_selector=directory_selector, min_size=min_size, max_size=max_size, no_move=no_move, no_resize=no_resize, cancel_callback=cancel_callback, **kwargs)
 		internal_dpg.push_container_stack(widget)
 		yield widget
 	finally:
@@ -4182,7 +4182,7 @@ def add_file_dialog(*, label: str =None, user_data: Any =None, use_internal_labe
 		warnings.warn('id keyword renamed to tag', DeprecationWarning, 2)
 		tag=kwargs['id']
 
-	return internal_dpg.add_file_dialog(label=label, user_data=user_data, use_internal_label=use_internal_label, tag=tag, width=width, height=height, callback=callback, show=show, default_path=default_path, default_filename=default_filename, file_count=file_count, modal=modal, directory_selector=directory_selector, min_size=min_size, max_size=max_size, no_move:bool=False, no_resize:bool=False, cancel_callback: Callable = None, **kwargs)
+	return internal_dpg.add_file_dialog(label=label, user_data=user_data, use_internal_label=use_internal_label, tag=tag, width=width, height=height, callback=callback, show=show, default_path=default_path, default_filename=default_filename, file_count=file_count, modal=modal, directory_selector=directory_selector, min_size=min_size, max_size=max_size, no_move=no_move, no_resize=no_resize, cancel_callback=cancel_callback, **kwargs)
 
 def add_file_extension(extension : str, *, label: str =None, user_data: Any =None, use_internal_label: bool =True, tag: Union[int, str] =0, width: int =0, height: int =0, parent: Union[int, str] =0, before: Union[int, str] =0, custom_text: str ='', color: Union[List[int], Tuple[int, ...]] =(-255, 0, 0, 255), **kwargs) -> Union[int, str]:
 	"""	 Creates a file extension filter option in the file dialog.
